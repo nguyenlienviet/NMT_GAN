@@ -4,7 +4,6 @@ import os
 import codecs
 import logging
 from tempfile import mkstemp
-from itertools import izip
 
 
 class AttrDict(dict):
@@ -90,7 +89,7 @@ class DataUtil(object):
             dst_shuf_path = dst_path
 
         src_sents, dst_sents = [], []
-        for src_sent, dst_sent in izip(codecs.open(src_shuf_path, 'r', 'utf8'),
+        for src_sent, dst_sent in zip(codecs.open(src_shuf_path, 'r', 'utf8'),
                                        codecs.open(dst_shuf_path, 'r', 'utf8')):
             # If exceed the max length, abandon this sentence pair.
             src_sent = src_sent.split()
@@ -139,7 +138,7 @@ class DataUtil(object):
         for bucket in buckets:
             caches[bucket] = [[], [], 0, 0]  # src sentences, dst sentences, src tokens, dst tokens
 
-        for src_sent, dst_sent in izip(codecs.open(src_shuf_path, 'r', 'utf8'),
+        for src_sent, dst_sent in zip(codecs.open(src_shuf_path, 'r', 'utf8'),
                                        codecs.open(dst_shuf_path, 'r', 'utf8')):
             src_sent = src_sent.split()
             dst_sent = dst_sent.split()
@@ -247,7 +246,7 @@ class DataUtil(object):
 
         # Read batches from test files.
         src_sents, dst_sents = [], []
-        for src_sent, dst_sent in izip(codecs.open(src_path, 'r', 'utf8'),
+        for src_sent, dst_sent in zip(codecs.open(src_path, 'r', 'utf8'),
                                        codecs.open(dst_path, 'r', 'utf8')):
             src_sent = src_sent.split()
             dst_sent = dst_sent.split()
